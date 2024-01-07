@@ -1,0 +1,147 @@
+\chapter{Elementary Set Theory}
+
+\section{Introduction to Sets}
+Informally, a \emph{set} is a collection of things.
+We can write a set by enumerating its elements as
+\[A = \{1, 2, 3\},\]
+or we can simply describe its elements by writing
+\[B = \{x \mid x \text{ is a real number}\}.\]
+The ``$\mid$'' symbol is read as ``such that,''
+and the colon ``:'' is sometimes used to mean the
+same thing. Some commonly used sets of numbers are:
+\begin{itemize}
+  \item $\R$, the set of real numbers,
+  \item $\Q$, the set of rational numbers,
+  \item $\C$, the set of complex numbers,
+  \item $\Z$, the set of integers,
+  \item and $\N$, the set of natural numbers.
+\end{itemize}
+
+\section{Set Membership and Subsets}
+We write $x \in A$ to mean that $x$ is an element of $A$
+and $x \notin A$ otherwise.
+For example,
+\[
+  1 \in \{1, 2, 3\}, \quad
+  4 \notin \{1, 2, 3\}, \quad
+  \text{and} \quad
+  \pi \notin \Z.
+\]
+We write $\varnothing$ to denote the empty set, and when
+the scope of a problem is understood,
+we write $\mathcal{U}$ to denote the universal set.
+In other words, $x \notin \varnothing$ and
+$x \in \mathcal{U}$ for any $x$.
+
+For two sets $A$ and $B$, we say that $A$ is a
+\emph{subset} of $B$ if every element of $A$ is also
+an element of $B$. We write $A \subseteq B$ or
+$A \subset B$ when this is the case. For example,
+\[\{1\} \notin \{1, 2, 3\} \quad \text{but} \quad \{1\} \subseteq \{1, 2, 3\}.\]
+Note that $\varnothing \subseteq A$ for any set $A$
+(also $\varnothing \subseteq \varnothing$ but
+$\varnothing \notin \varnothing$).
+
+\emph{Equality} for sets is defined in terms of subsets. We
+say that $A = B$ if $A \subseteq B$ and $B \subseteq A$.
+Note that sets are inherently unordered and contain
+unique elements, so that
+\[\{1, 2, 3\} = \{3, 2, 1\} \quad \text{and} \quad \{1, 2, 2, 3\} = \{1, 2, 3\}.\]
+We write
+$A \subsetneq B$ when $A$ is a \emph{proper} subset of
+$B$, i.e., $A \subseteq B$ but $A \neq B$.
+
+\section{The Cartesian Product}
+For two sets $A$ and $B$, their \emph{Cartesian product}
+is defined as
+\[A \times B = \{(x, y) \mid x \in A, y \in B\}.\]
+This is technically not a set operation, but rather
+shorthand for the description of a new set. We can also
+define the Cartesian product of $n$ sets
+$A_1, \dots, A_n$ as
+\[
+  A_1 \times \cdots \times A_n
+  = \{(x_1, \dots, x_n) \mid x_1 \in A_1, \dots, x_n \in A_n\}.
+\]
+Note that by this definition,
+$A \times B \times C \ne A \times (B \times C)$.
+We also write $A^n$ to mean $A \times \cdots \times A$
+($n$ times).
+As an example, the set $\R^2 = \R \times \R$ is the
+usual 2-D Cartesian plane.
+
+\section{Set Operations}
+Let $A$ and $B$ be two sets. We can define the following
+operations on $A$ and $B$:
+\begin{itemize}
+  \item the \emph{union} $A \cup B = \{x \mid x \in A \text{ or } x \in B\}$,
+  \item the \emph{intersection} $A \cap B = \{x \mid x \in A \text{ and } x \in B\}$,
+  \item the \emph{set difference} $A \setminus B = \{x \mid x \in A \text{ and } x \notin B\}$,
+    we sometimes read this as ``$A$ take away $B$,''
+  \item and when a universal set $\mathcal{U}$ is
+    understood, the \emph{complement}
+    $A^c = \mathcal{U} \setminus A$.
+\end{itemize}
+For example, if $\mathcal{U} = \R^2$ and $A = \{(x, y) \mid x^2 + y^2 < 1\}$,
+then $A^c = \{(x, y) \mid x^2 + y^2 \geq 1\}$, i.e.
+the set of all points outside the unit circle and on
+its edge.
+
+\begin{tcolorbox}
+\begin{prop}
+  For any two sets $A$ and $B$, we have
+  $A = (A \cap B) \cup (A \setminus B)$.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+  We need to show that $\text{LHS} \subseteq \text{RHS}$
+  and $\text{RHS} \subseteq \text{LHS}$.
+
+  To see that $\text{LHS} \subseteq \text{RHS}$,
+  take any element $x \in \text{LHS} = A$. If
+  $x \in A \setminus B$, then
+  $x \in (A \cap B) \cup (A \setminus B)$ and we're done.
+  Otherwise $x \notin A \setminus B$ and so
+  $x \in B$ since we assumed that $x \in A$.
+  Then $x \in A \cap B$ and thus
+  $x \in (A \cap B) \cup (A \setminus B)$. So
+  $x \in \text{RHS}$ and thus
+  $\text{LHS} \subseteq \text{RHS}$
+  as desired.
+
+  For $\text{RHS} \subseteq \text{LHS}$,
+  take any element $x \in \text{RHS} = (A \cap B) \cup (A \setminus B)$.
+  If $x \in A \setminus B$, then $x \in A$ by definition.
+  Otherwise $x \in A \cap B$ and so $x \in A$ also.
+  Thus $x \in \text{LHS}$ and $\text{RHS} \subseteq \text{LHS}$ as desired.
+\end{proof}
+
+\begin{remark}
+  This is related to the \emph{law of
+  total probability}, which states that
+  for any two events $A$ and $B$,
+  \[
+    \Pr(A)
+    = \Pr(A \cap B) + \Pr(A \cap B^c)
+    = \Pr(A | B)\Pr(B) + \Pr(A | B^c)\Pr(B^c).
+  \]
+\end{remark}
+
+\section{Set Laws}
+The \emph{distributive laws} say that
+for any three sets $A$, $B$, and $C$,
+\[
+  A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+  \quad \text{and} \quad
+  A \cap (B \cup C) = (A \cap B) \cup (A \cap C).
+\]
+The so-called \emph{de Morgan's laws} say that
+for any two sets $A$ and $B$,
+\[
+  (A \cup B)^c = A^c \cap B^c
+  \quad \text{and} \quad
+  (A \cap B)^c = A^c \cup B^c.
+\]
+Notice that de Morgan's laws allow us to switch
+from unions to intersections and vice versa.

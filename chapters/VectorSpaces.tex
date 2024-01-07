@@ -1,0 +1,103 @@
+\chapter{Vector Spaces}
+
+\section{Motivation}
+The usual type of vector that we're familiar with is
+of the form $(x_1, \dots, x_n) \in \R^n$. In this
+way, we can add two vectors with an addition
+operation\footnote{The notation $f : A \to B$ means that
+$f$ is a function from $A$ to $B$, i.e. it has domain $A$ and codomain $B$.} $+ : \R^n \times \R^n \to \R^n$ and
+multiply a vector by a scalar (from $\R$)
+with a scalar multiplication operation
+$\cdot : \R \times \R^n \to \R^n$, both defined
+component-wise. We would like to generalize this
+structure to a more abstract setting.
+
+\section{Abstract Vector Spaces}
+
+\begin{tcolorbox}
+  \begin{definition}[Vector space]
+    A \emph{vector space}
+    $(V, +_v, \cdot_v,)_K$ over a field\footnote{We call $K$ the \emph{base field} of $V$.} $K$ is a set
+    $V$ equipped with a binary addition operation
+    $+_v : V \times V \to V$ and a scalar multiplication\footnote{We will sometimes just write $\alpha x$ instead of $\alpha \cdot_v x$ in these axioms for notational clarity.}
+    operation $\cdot_v : K \times V \to V$
+    that satisfy the following 10 axioms:
+    \begin{enumerate}[(i)]
+      \item \emph{Closure under addition}:
+        For all $x, y \in V$, $x +_v y \in V$.
+      \item \emph{Additive commutativity}:
+        For all $x, y \in V$, $x +_v y = y +_v x$.
+      \item \emph{Additivity associativity}:
+        For all $x, y, z \in V$,
+        $(x +_v y) +_v z = x +_v (y +_v z)$.
+      \item \emph{Existence of additive identity}:
+        There exists $0_v \in V$ such that
+        $0_v +_v x = x$ for all $x \in V$.
+      \item \emph{Existence of additive inverse}:
+        For all $x \in V$, there exists $(-x) \in V$
+        such that $x +_v (-x) = 0_v$.
+      \item \emph{Closure under scalar multiplication}:
+        For all $\alpha \in K$ and $x \in V$,
+        $\alpha \cdot_v x \in V$.
+      \item \emph{Distributive property with scalars}:
+        For all $\alpha \in K$ and $x, y \in V$,
+        $\alpha (x +_v y) = \alpha x +_v \alpha y$.
+      \item \emph{Multiplicative associativity}:
+        For all $\alpha, \beta \in K$ and $x \in V$,
+        $\alpha(\beta x) = (\alpha \beta) x$.
+      \item \emph{Distributive property with vectors}:
+        For all $\alpha, \beta \in K$ and $x \in V$,
+        $(\alpha + \beta) x = \alpha x +_v \beta x$.
+      \item \emph{Existence of multiplicative identity}:
+        There exists $1 \in K$ such that
+        $1 \cdot_v x = x$ for all $x \in V$.
+    \end{enumerate}
+  \end{definition}
+\end{tcolorbox}
+
+Note that we will often omit the subscripts on $+_v$
+and $\cdot_v$ when the vector space is clear from context.
+We often also just write $V$ to refer to
+$(V, +_v, \cdot_v)_K$ when the base field and
+operations are clear from context.
+We sometimes say that a vector space is \emph{abstract}
+if it is not $\R^n$, which we sometimes refer to as
+\emph{concrete}. It is not too important in our context
+to define what a field is, we will almost always
+take $K = \R$ or $\C$.
+
+Just from these axioms, we can already prove some
+immediate (perhaps obvious) properties.
+
+\begin{tcolorbox}
+  \begin{prop}
+    Let $V$ be a vector space and $0_v \in V$ be
+    its additive identity. Then
+    $0 \cdot x = 0_v$ for any $x \in V$.
+  \end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+  By the distributive property, we have
+  \[
+    0 x = (0 + 0) x = 0 x + 0 x.
+  \]
+  Adding the additive inverse of $0 x$ to both sides,
+  we obtain $0_v = 0x$ as desired.
+\end{proof}
+
+\begin{tcolorbox}
+  \begin{prop}
+    The additive identity of a vector space is unique.
+  \end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+  Let $V$ be a vector space and $0_v, \widetilde{0}_v \in V$
+  both be additive identities. Then
+  \[
+    0_v = \widetilde{0}_v + 0_v = 0_v + \widetilde{0}_v = \widetilde{0}_v
+  \]
+  by commutativity and the additive identity property.
+  So the additive identity is unique.
+\end{proof}

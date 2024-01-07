@@ -1,0 +1,135 @@
+\chapter{Matrices and Linear Systems}
+
+\section{Motivation}
+Consider the following system of equations:
+\[
+  \begin{cases}
+    3x + 2y - 3z = 0 \\
+    x + 5y = 2.
+  \end{cases}
+\]
+We're interested in determining whether such a system
+has a solution, and if so, how many solutions it has
+and what they are. In general, we're interested in
+systems of the form
+\[
+  \begin{cases}
+    a_{11} x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+    a_{21} x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+    \quad \vdots \\
+    a_{m1} x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m.
+  \end{cases}
+\]
+Here $x = (x_1, x_2, \dots, x_n)$ are the unknowns
+and $b = (b_1, b_2, \dots, b_m)$ is the right-hand side
+of the system. We can also express the coefficients
+as a block of numbers in the following way:
+\[
+  A = \begin{pmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{m 1} & a_{m 2} & \cdots & a_{m n}
+  \end{pmatrix}.
+\]
+
+\section{Matrices}
+The block of numbers $A$ from the previous section
+is precisely the general form of
+what we call a \emph{matrix}.
+We say that a matrix has dimensions
+$m \times n$ if it has $m$ rows and $n$ columns.
+We also sometimes write $A_{ij}$ to refer to
+the entry in the $i$th row and $j$th column of $A$.
+
+\subsection{Operations on Matrices}
+For a scalar $\lambda \in \R$, we can define the
+\emph{scalar multiplication} of $\lambda$ and $A$ as
+\[
+  \lambda A = \begin{pmatrix}
+    \lambda a_{11} & \lambda a_{12} & \cdots & \lambda a_{1n} \\
+    \lambda a_{21} & \lambda a_{22} & \cdots & \lambda a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \lambda a_{m 1} & \lambda a_{m 2} & \cdots & \lambda a_{m n}
+  \end{pmatrix}.
+\]
+In other words, we simply multiply each entry of $A$
+by $\lambda$. For two matrices of the same size,
+we define \emph{matrix addition} as simply addition
+component-wise. For example,
+\[
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    4 & 5 & 6
+  \end{pmatrix} +
+  \begin{pmatrix}
+    2 & 1 & 2 \\
+    6 & 4 & 5
+  \end{pmatrix} =
+  \begin{pmatrix}
+    3 & 3 & 5 \\
+    10 & 9 & 11
+  \end{pmatrix}.
+\]
+More generally, we have $(A + B)_{ij} = A_{ij} + B_{ij}$.
+For \emph{matrix multiplication}, we have the formula
+\[
+  (AB)_{ij} = \sum_{k = 1}^n A_{ik} B_{kj}.
+\]
+In other words, we take a row of $A$ and a column of $B$,
+multiply them component-wise, and repeat for each
+row and column. Notice that for this to work, the number
+of columns of $A$ must equal the number of rows of $B$.
+In particular, the product of a $m \times n$ matrix
+and a $n \times k$ matrix is a $m \times k$ matrix.
+For example,
+\[
+  \begin{pmatrix}
+    1 & 0 & 2 & 0 & 3 \\
+    2 & 1 & 3 & 1 & 4 \\
+    -1 & 2 & -1 & 3 & -1
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 2 \\ 2 & 1 \\ 0 & 0 \\ 0 & 0 \\ 3 & 4
+  \end{pmatrix} =
+  \begin{pmatrix}
+    10 & 14 \\ 16 & 21 \\ 0 & -4
+  \end{pmatrix}.
+\]
+Also note that matrix multiplication is \emph{not}
+commutative, i.e. $AB \neq BA$ in general. In the
+specific example above, the product $BA$ is not even
+defined!
+
+\section{Solving Linear Systems}
+Given an $m \times n$ matrix of coefficients $A$, a
+$n \times 1$ matrix of unknowns $x$, and a $m \times 1$
+matrix $b$ of right-hand side values, notice that
+we have a precise correspondence
+\[
+  \begin{cases}
+    a_{11} x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+    a_{21} x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+    \quad \vdots \\
+    a_{m1} x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m.
+  \end{cases}
+  \longleftrightarrow \quad
+  Ax = b.
+\]
+The notation $Ax = b$ gives us a convenient way to
+express the linear system on the left, and it carries
+the exact same information with the way we defined
+matrix multiplication. We also like to work with
+\[
+  [A | b] =
+  \left(
+    \begin{array}{cccc|c}
+      a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+      a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+      \vdots & \vdots & \ddots & \vdots & \vdots \\
+      a_{m 1} & a_{m 2} & \cdots & a_{m n} & b_m
+    \end{array}
+  \right),
+\]
+which is called the \emph{augmented matrix} of the
+linear system.
